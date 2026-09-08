@@ -31,9 +31,9 @@ Bera 解码器：UNet(32/64/128)，lr=1e-3，1600 步（白块训练）。
 
 ## 5. 快速运行示例（容器内）
 ```bash
-# 官方评测（干净）
+# 官方评测（干净） 用于验证模型基座是否安装正确
 python /workspace/.../src/eval/attack_eval_run.py --checkpoint /data/models/openvla-7b-oft-finetuned-libero-spatial --adapter <final_backdoor_adapter> --suite libero_spatial --trials_per_task 3
-# 触发器评测：命令加 --trigger
+# 触发器评测：命令加 --trigger 
 # 进行后门训练
 python src/attack/r3a_pipeline.py \
   --round-root /data/runs/attack/my_run \
