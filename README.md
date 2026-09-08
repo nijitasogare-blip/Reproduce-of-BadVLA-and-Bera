@@ -42,7 +42,7 @@ python src/monitor/train_monitor.py --log <log>
 （脚本内默认 /data 路径，可按实际挂载修改。）
 
 ## 6. 版本依赖与 Git 上传说明
-- 核心依赖版本已在上文列出；建议附 requirements.txt（见容器 /workspace/requirements.txt 精简而来）。
+- 核心依赖版本已在上文列出
 - 权重与数据因体积不入库：README 只记录 HF 源与本地路径。
 - 本仓库不包含任何后门模型权重，只包含训练/评测代码与结果记录。
 
