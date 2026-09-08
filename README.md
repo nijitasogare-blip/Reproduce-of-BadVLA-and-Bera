@@ -5,8 +5,8 @@
 - Bera: When Attention Betrays: Erasing Backdoor Attacks in Robotic Policies by Reconstructing Visual Tokens (ICRA 2026)
 
 ## 1. 实验设备与环境
-- 笔记本：RTX 5060 Laptop 8GB（训练/推理），Intel 核显（未使用）
-- Docker Desktop（WSL2），镜像 openvla:dev-final
+- 笔记本：RTX 5060 Laptop 8GB（训练/推理）
+- Docker Desktop（WSL2）
 - 容器内 Python 3.11.10, torch 2.13.0+cu130, transformers 4.40.1, bitsandbytes 0.49.2, peft 0.11.1, tensorflow 2.15.0, tensorflow-datasets 4.9.3, LIBERO (PyPI 0.1.1), robosuite 1.4.0, mujoco 2.3.7
 - 关键环境变量：LD_LIBRARY_PATH=/opt/conda/lib/python3.11/site-packages/nvidia/cu13/lib（bnb 需要）；HF_ENDPOINT=https://hf-mirror.com
 
@@ -34,6 +34,11 @@ Bera 解码器：UNet(32/64/128)，lr=1e-3，1600 步（白块训练）。
 # 官方评测（干净）
 python /workspace/.../src/eval/attack_eval_run.py --checkpoint /data/models/openvla-7b-oft-finetuned-libero-spatial --adapter <final_backdoor_adapter> --suite libero_spatial --trials_per_task 3
 # 触发器评测：命令加 --trigger
+# 进行后门训练
+python src/attack/r3a_pipeline.py \
+  --round-root /data/runs/attack/my_run \
+  --checkpoint /data/models/openvla-7b-oft-finetuned-libero-spatial \
+  --stage2-steps 6000
 # Bera 三组评测
 GROUPS=nodefense,bera,random DECODER=<dec.pt> python ./defense/bera_eval3.py
 # 监视训练
