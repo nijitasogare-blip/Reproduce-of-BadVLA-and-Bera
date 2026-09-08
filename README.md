@@ -35,9 +35,9 @@ Bera 解码器：UNet(32/64/128)，lr=1e-3，1600 步（白块训练）。
 python /workspace/.../src/eval/attack_eval_run.py --checkpoint /data/models/openvla-7b-oft-finetuned-libero-spatial --adapter <final_backdoor_adapter> --suite libero_spatial --trials_per_task 3
 # 触发器评测：命令加 --trigger
 # Bera 三组评测
-GROUPS=nodefense,bera,random DECODER=<dec.pt> python src/defense/bera_eval3.py
+GROUPS=nodefense,bera,random DECODER=<dec.pt> python ./defense/bera_eval3.py
 # 监视训练
-python src/monitor/train_monitor.py --log <log>
+python ./monitor/train_monitor.py --log <log>
 ```
 （脚本内默认 /data 路径，可按实际挂载修改。）
 
